@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  app:
+    build: .
+    restart: always
+    volumes:
+      - ./app:/usr/src/app/
+    ports:
+      - 80:80
+    environment:
+      - PORT=80
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+  redis:
+    image: redis:5.0.7
+    restart: always
+    ports:
+      - 6379:6379

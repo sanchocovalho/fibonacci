@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Числа последовательности Фибоначчи{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm d-flex flex-column align-items-center user-box">
+                <h2 class="title">Расчет числа последовательности Фибоначчи</h2>
+                <h5 class="title">Введите порядковый номер числа в последовательности Фибоначчи:</h5>
+                <input class="input-box" type="text" autofocus="" placeholder="Введите число">
+                <button class="calc-btn" type="submit">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Расчет числа
+                </button>
+                <div class="result-box">
+                    {% if fibo %}
+                    <h3 class="fibo-index">{{ fibo.number }}-е число последовательности Фибоначчи:</h3>
+                    <p class='fibo-primary'>{{ fibo.primary }}</p>
+                    {% endif %}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script type="application/javascript" src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+    <script type="text/javascript">
+        $(".calc-btn").on("click", function() {
+            number = $(".input-box").val();
+            if (!isNaN(number) && (number>=0)) {
+                $.ajax({
+                    type: 'GET',
+                    url: "get=" + number.toString(),
+                    success: function(template) {
+                        $('.result-box').html(template);
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock %}
