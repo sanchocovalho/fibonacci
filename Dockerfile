@@ -19,6 +19,7 @@ COPY ./app/static/css/404.css /app/static/css/404.css
 COPY ./app/static/css/style.css /app/static/css/style.css
 COPY ./app/static/font/consolas.ttf /app/static/font/consolas.ttf
 COPY ./app/static/icon/logo.png /app/static/icon/logo.png
+COPY ./app/static/icon/404.png /app/static/icon/404.png
 COPY ./app/static/js/jquery-3.4.1.min.js /app/static/js/jquery-3.4.1.min.js
 
 ENTRYPOINT [ "python" ]
