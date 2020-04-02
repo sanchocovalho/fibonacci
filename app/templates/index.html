@@ -34,7 +34,7 @@
     <script type="text/javascript">
         $(".calc-btn").on("click", function() {
             number = $(".input-box").val();
-            if (!isNaN(number) && (number>=0)) {
+            if (number!='' && !isNaN(number) && number>=0) {
                 $.ajax({
                     type: 'GET',
                     url: "get=" + number.toString(),
